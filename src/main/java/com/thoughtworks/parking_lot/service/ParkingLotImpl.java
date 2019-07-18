@@ -17,4 +17,10 @@ public class ParkingLotImpl {
         ParkingLot parkingLot1 = parkingLotRepository.findByName(parkingLot.getName());
         return parkingLot1;
     }
+
+    public ParkingLot deleteParkingLot(int id){
+        ParkingLot parkingLot = parkingLotRepository.findById(id).orElse(null);
+        parkingLotRepository.deleteById(id);
+        return parkingLot;
+    }
 }
