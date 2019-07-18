@@ -13,9 +13,6 @@ import java.util.List;
 public class ParkingLotAPI {
 
     @Autowired
-    private ParkingLotRepository parkingLotRepository;
-
-    @Autowired
     private ParkingLotImpl parkingLotImpl;
 
     @PostMapping("/parking-lots")
