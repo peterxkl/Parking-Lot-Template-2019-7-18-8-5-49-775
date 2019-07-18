@@ -4,12 +4,13 @@ import com.thoughtworks.parking_lot.dto.ParkingLotPerPage;
 import com.thoughtworks.parking_lot.model.ParkingLot;
 import com.thoughtworks.parking_lot.repository.ParkingLotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service
 public class ParkingLotImpl {
 
     @Autowired

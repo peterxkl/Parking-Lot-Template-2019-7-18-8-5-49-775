@@ -12,9 +12,17 @@ public class ParkingLot {
     @Column(unique = true)
     private String name;
 
-
     private int capacity;
     private String position;
+
+    public ParkingLot() {
+    }
+
+    public ParkingLot(String name, int capacity, String position) {
+        this.name = name;
+        this.capacity = capacity;
+        this.position = position;
+    }
 
     public int getId() {
         return id;
