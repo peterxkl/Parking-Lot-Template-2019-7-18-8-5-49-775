@@ -1,1 +1,1 @@
-create table parkinglot (id  int ,name varchar(20),capacity int,position varchar(30),primary key (id));
+create table Parking (id  int auto_increment,name varchar(20),capacity int,position varchar(30),primary key (id));
