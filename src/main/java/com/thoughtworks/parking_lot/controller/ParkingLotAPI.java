@@ -38,6 +38,9 @@ public class ParkingLotAPI {
         return parkingLotImpl.getParkingLotById(id);
     }
 
-    
+    @PutMapping("/parking-lots")
+    public ParkingLot updateParkingLot(@RequestBody ParkingLot parkingLot){
+        return parkingLotImpl.updateParkingLot(parkingLot);
+    }
 
 }

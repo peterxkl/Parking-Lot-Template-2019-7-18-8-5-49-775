@@ -48,4 +48,10 @@ public class ParkingLotImpl {
         ParkingLot parkingLot =  parkingLotRepository.findById(id).orElse(null);
         return parkingLot;
     }
+
+    public ParkingLot updateParkingLot(ParkingLot parkingLot){
+        ParkingLot parkingLot1 = parkingLotRepository.findById(parkingLot.getId()).orElse(null);
+        parkingLot1.setCapacity(parkingLot.getCapacity());
+        return parkingLotRepository.findById(parkingLot.getId()).orElse(null);
+    }
 }
