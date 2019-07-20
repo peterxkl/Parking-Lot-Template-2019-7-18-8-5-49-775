@@ -1,13 +1,12 @@
 package com.thoughtworks.parking_lot.service;
 
-import com.thoughtworks.parking_lot.dto.ParkingLotPerPage;
 import com.thoughtworks.parking_lot.model.ParkingLot;
 import com.thoughtworks.parking_lot.repository.ParkingLotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,9 +17,7 @@ public class ParkingLotImpl {
 
 
     public ParkingLot addParkingLot(ParkingLot parkingLot) {
-        parkingLotRepository.save(parkingLot);
-        ParkingLot parkingLot1 = parkingLotRepository.findByName(parkingLot.getName());
-        return parkingLot1;
+        return parkingLotRepository.save(parkingLot);
     }
 
     public ParkingLot deleteParkingLot(int id){
@@ -29,30 +26,21 @@ public class ParkingLotImpl {
         return parkingLot;
     }
 
-    public List<ParkingLotPerPage> getAllParkingLotByPage(){
-        List<ParkingLotPerPage> parkingLotPerPages = new ArrayList<>();
-        List<ParkingLot> list = parkingLotRepository.findAll();
-        for(int i = 0 ,j = 1; i < list.size() ; j++){
-            List<ParkingLot> parkingLots = new ArrayList<>();
-            for(int k = 0 ; k <15 ; k++){
-                if(i>=list.size()){
-                    break;
-                }
-                parkingLots.add(list.get(i++));
-            }
-            parkingLotPerPages.add(new ParkingLotPerPage(j,parkingLots));
+    public List<ParkingLot> getAllParkingLotByPage(int page){
+        if(page == 0){
+            return parkingLotRepository.findAll();
         }
-        return parkingLotPerPages;
+        return parkingLotRepository.findAll(PageRequest.of(page-1,15)).getContent();
     }
 
     public ParkingLot getParkingLotById(int id){
-        ParkingLot parkingLot =  parkingLotRepository.findById(id).orElse(null);
-        return parkingLot;
+        return parkingLotRepository.findById(id).orElse(null);
     }
 
     public ParkingLot updateParkingLot(ParkingLot parkingLot){
         ParkingLot parkingLot1 = parkingLotRepository.findById(parkingLot.getId()).orElse(null);
         parkingLot1.setCapacity(parkingLot.getCapacity());
+        parkingLotRepository.save(parkingLot1);
         return parkingLotRepository.findById(parkingLot.getId()).orElse(null);
     }
 }

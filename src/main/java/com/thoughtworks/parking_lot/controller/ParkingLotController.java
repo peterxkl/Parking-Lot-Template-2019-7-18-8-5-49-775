@@ -1,16 +1,13 @@
 package com.thoughtworks.parking_lot.controller;
 
-import com.thoughtworks.parking_lot.dto.ParkingLotPerPage;
 import com.thoughtworks.parking_lot.model.ParkingLot;
-import com.thoughtworks.parking_lot.repository.ParkingLotRepository;
 import com.thoughtworks.parking_lot.service.ParkingLotImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-public class ParkingLotAPI {
+public class ParkingLotController {
 
     @Autowired
     private ParkingLotImpl parkingLotImpl;
@@ -26,8 +23,8 @@ public class ParkingLotAPI {
     }
 
     @GetMapping("/parking-lots")
-    public List<ParkingLotPerPage> getAllParkingLotByPage(){
-        return parkingLotImpl.getAllParkingLotByPage();
+    public List<ParkingLot> getAllParkingLotByPage(@RequestParam(value = "page",required = false,defaultValue = "0")int page){
+        return parkingLotImpl.getAllParkingLotByPage(page);
     }
 
     @GetMapping("/parking-lots/{id}")
