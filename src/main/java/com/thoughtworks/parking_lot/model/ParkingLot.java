@@ -1,6 +1,7 @@
 package com.thoughtworks.parking_lot.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="Parking")
@@ -13,7 +14,15 @@ public class ParkingLot {
     private String name;
 
     private int capacity;
+
     private String position;
+
+    @Column(name = "surplus_capacity")
+    private int surplusCapacity;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "parkingLot_Id")
+    private List<ParkingOrder> parkingOrders;
 
     public ParkingLot() {
     }
@@ -22,6 +31,23 @@ public class ParkingLot {
         this.name = name;
         this.capacity = capacity;
         this.position = position;
+        this.surplusCapacity = capacity;
+    }
+
+    public int getSurplusCapacity() {
+        return surplusCapacity;
+    }
+
+    public void setSurplusCapacity(int surplusCapacity) {
+        this.surplusCapacity = surplusCapacity;
+    }
+
+    public List<ParkingOrder> getParkingOrders() {
+        return parkingOrders;
+    }
+
+    public void setParkingOrders(List<ParkingOrder> parkingOrders) {
+        this.parkingOrders = parkingOrders;
     }
 
     public int getId() {

@@ -1,1 +1,2 @@
-create table Parking (id  int auto_increment,name varchar(20),capacity int,position varchar(30),primary key (id));
+create table Parking (id  int auto_increment,name varchar(20),capacity int,position varchar(30),surplus_capacity int ,primary key (id));
+create table Orders(order_number  varchar(20) primary key,parking_name varchar(20),car_number varchar(20),create_time varchar(20),leave_time varchar(20),order_status CHAR(2),parkingLot_Id int);
