@@ -3,7 +3,6 @@ package com.thoughtworks.parking_lot.controller;
 
 import com.thoughtworks.parking_lot.model.ParkingLot;
 import com.thoughtworks.parking_lot.repository.ParkingLotRepository;
-import org.json.JSONArray;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,7 @@ public class ParkingLotControllerTest {
 
     @Test
     public void should_return_parking_lot_when_delete_a_parking_lot() throws Exception {
-        ParkingLot parkingLot = parkingLotRepository.save(new ParkingLot("停车场6号",150,"横琴1号"));
+        ParkingLot parkingLot = parkingLotRepository.save(new ParkingLot("停车场6号",150,"横琴1号",150));
         mockMvc.perform(delete("/parking-lots/{id}",parkingLot.getId()))
                 .andDo(print())
                 .andExpect(jsonPath("$.name").value("停车场6号"));

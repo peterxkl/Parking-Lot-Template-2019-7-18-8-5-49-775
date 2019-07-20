@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.xml.crypto.Data;
 @Entity
 @Table(name="Orders")
 public class ParkingOrder {
@@ -27,6 +26,13 @@ public class ParkingOrder {
     @Column(name = "order_status")
     private char orderStatus;
 
+    public ParkingOrder() {
+    }
+
+    public ParkingOrder(String parkingName, String carNumber) {
+        this.parkingName = parkingName;
+        this.carNumber = carNumber;
+    }
 
     public String getOrderNumber() {
         return orderNumber;
@@ -76,9 +82,13 @@ public class ParkingOrder {
         this.orderStatus = orderStatus;
     }
 
-    public ParkingOrder(String parkingName, String carNumber) {
+
+    public ParkingOrder(String orderNumber, String parkingName, String carNumber, String creationTime, char orderStatus) {
+        this.orderNumber = orderNumber;
         this.parkingName = parkingName;
         this.carNumber = carNumber;
+        this.creationTime = creationTime;
+        this.orderStatus = orderStatus;
     }
 
     public ParkingOrder(String orderNumber, String parkingName, String carNumber, String creationTime, String leaveTime, char orderStatus) {

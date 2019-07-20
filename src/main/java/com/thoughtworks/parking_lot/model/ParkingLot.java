@@ -21,17 +21,17 @@ public class ParkingLot {
     private int surplusCapacity;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parkingLot_Id")
+    @JoinColumn(name = "parking_lot_Id")
     private List<ParkingOrder> parkingOrders;
 
     public ParkingLot() {
     }
 
-    public ParkingLot(String name, int capacity, String position) {
+    public ParkingLot(String name, int capacity, String position, int surplusCapacity) {
         this.name = name;
         this.capacity = capacity;
         this.position = position;
-        this.surplusCapacity = capacity;
+        this.surplusCapacity = surplusCapacity;
     }
 
     public int getSurplusCapacity() {
