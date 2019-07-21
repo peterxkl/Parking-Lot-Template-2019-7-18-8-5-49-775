@@ -17,6 +17,6 @@ public class ParkingOrderController {
     }
     @PutMapping("/parking-lots/{id}")
     public ParkingOrder updateParkingLotOrder(@PathVariable int id , @RequestBody ParkingOrder parkingOrder){
-        return parkingOrderImpl.addParkingLotOrder(id , parkingOrder);
+        return parkingOrderImpl.updateParkingLotOrder(id , parkingOrder);
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -36,5 +37,18 @@ public class ParkingOrderControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.carNumber").value("京A.888888"));
+    }
+
+    @Test
+    public void should_update_a_parking_lot_order_when_fetch_car() throws Exception {
+        mockMvc.perform(put("/parking-lots/1").contentType(MediaType.APPLICATION_JSON).content("{\n" +
+                "\t    \"parkingName\": \"停车场1号\",\n" +
+                "        \"carNumber\": \"京A.888888\"\n" +
+                "}"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.orderStatus").value("0"))
+                .andExpect(jsonPath("$.carNumber").value("京A.888888"));
+
     }
 }
